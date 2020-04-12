@@ -22,11 +22,6 @@
 20. Footer style
 ------------------------------------------------------------------- */
 
-
-/* ======= Google Fonts  ======= */
-@import url('https://fonts.googleapis.com/css?family=Rambla:300,400,700,900%7CPlayfair+Display:400,400i,700,700i,900,900i&display=swap');
-
-
 /* ======= Default style  ======= */
 html,
 body {
@@ -36,7 +31,7 @@ body {
     font-smoothing: antialiased;
 }
 body {
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 16px;
     line-height: 1.75em;
     font-weight: 400;
@@ -49,13 +44,13 @@ h4,
 h5,
 h6 {
     color: #000;
-    font-family: 'Playfair Display', serif;
+    
     font-weight: 700;
     line-height: 1.5em;
     margin: 0 0 15px 0;
 }
 p {
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 16px;
     line-height: 1.75em;
     font-weight: 400;
@@ -108,7 +103,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: 'Playfair Display', serif;
+    
 }
 input[type="password"]:focus,
 input[type="email"]:focus,
@@ -134,7 +129,7 @@ textarea {
     box-shadow: none;
     display: block;
     width: 100%;
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 16px;
     line-height: 1.75em;
     color: #666;
@@ -408,7 +403,7 @@ input[type="checkbox"] {
     position: relative;
 }
 #betty-aside {
-    padding: 60px 60px 15px 60px;
+    padding: 60px 30px 15px 30px;
     width: 25%;
     position: fixed;
     bottom: 0;
@@ -426,7 +421,7 @@ input[type="checkbox"] {
 }
 @media screen and (max-width: 1200px) {
     #betty-aside {
-        width: 30%;
+        width: 40%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -521,11 +516,11 @@ input[type="checkbox"] {
 #betty-aside #betty-main-menu ul ul {
     display: none;
 }
-#betty-aside #betty-main-menu > ul > li > a {
+#betty-aside #betty-main-menu > ul > li > a ,#betty-aside #betty-main-menu > ul > li > span{
     margin: 7px 0 0 0;
     padding: 0 0 7px 0;
     list-style: none;
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 18px;
     line-height: 1.75em;
     border-bottom: 2px solid rgba(255, 255, 255, 0.04);
@@ -540,7 +535,7 @@ input[type="checkbox"] {
     margin: 7px 0 0 0;
     padding: 0 0 7px 0;
     list-style: none;
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 16px;
     line-height: 1.75em;
     color: #fbf7f9;
@@ -590,7 +585,7 @@ input[type="checkbox"] {
 #betty-aside #betty-main-menu ul ul li a {
     padding: 12px 0 12px 30px;
     list-style: none;
-    font-family: 'Rambla', sans-serif;
+    
     color: #fbf7f9;
     font-size: 16px;
     font-weight: 500;
@@ -684,7 +679,7 @@ input[type="checkbox"] {
     font-size: 15px;
     margin-bottom: 0px;
     margin-top: 3px;
-    font-family: 'Rambla', sans-serif;
+    
     color: #fff;
 }
 .betty-contact-info h6 {
@@ -692,7 +687,7 @@ input[type="checkbox"] {
     font-size: 15px;
     font-weight: 400;
     margin-bottom: 0px;
-    font-family: 'Rambla', sans-serif;
+    
 }
 /* footer contact info */
 .betty-contact-info2 {
@@ -728,7 +723,7 @@ input[type="checkbox"] {
     font-size: 16px;
     margin-bottom: 0px;
     margin-top: 0px;
-    font-family: 'Rambla', sans-serif;
+    
     color: #000;
 }
 .betty-contact-info2 h6 {
@@ -736,7 +731,7 @@ input[type="checkbox"] {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 0px;
-    font-family: 'Rambla', sans-serif;
+    
 }
 /* sidebar footer */
 .betty-footer p {
@@ -823,7 +818,7 @@ input[type="checkbox"] {
 }
 @media screen and (max-width: 1200px) {
     #betty-main {
-        width: 75%;
+        width: 60%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -991,14 +986,14 @@ body.offcanvas .betty-nav-toggle {
 }
 .betty-about-heading {
     color: #000;
-    font-family: 'Playfair Display', serif;
+    
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 15px;
 }
 .betty-about-heading span {
     color: #e52e71;
-    font-family: 'Playfair Display', serif;
+    
     font-weight: 400;
     font-size: 16px;
     margin-bottom: 15px;
@@ -1007,14 +1002,14 @@ body.offcanvas .betty-nav-toggle {
 
 .betty-post-heading {
     color: #000;
-    font-family: 'Playfair Display', serif;
+    
     margin-bottom: 15px;
     font-weight: 700;
     font-size: 25px;
 }
 .betty-contact-heading {
     color: #e52e71;
-    font-family: 'Playfair Display', serif;
+    
     margin-bottom: 10px;
     font-weight: 700;
     font-size: 24px;
@@ -1024,7 +1019,7 @@ body.offcanvas .betty-nav-toggle {
 }
 .heading-meta {
     display: block;
-    font-family: 'Playfair Display', serif;
+    
     font-size: 18px;
     font-style: italic;
     color: #000;
@@ -1327,7 +1322,7 @@ body.offcanvas .betty-nav-toggle {
 .service-price {}
 .services-price-info {}
 .services-price-info .title {
-    font-family: 'Rambla', sans-serif;
+    
     font-size: 18px;
     color: #e52e71;
     margin-bottom: 10px;
@@ -1659,7 +1654,7 @@ body.offcanvas .betty-nav-toggle {
     font-size: 16px;
     color: #e52e71;
     font-weight: 400;
-    font-family: 'Playfair Display', serif;
+    
 }
 .blog-entry .desc .lead:hover {
     color: #e52e71;
@@ -1687,7 +1682,7 @@ body.offcanvas .betty-nav-toggle {
 .betty-sidebar-block .betty-sidebar-block-title {
     color: #e52e71;
     text-decoration: none;
-    font-family: 'Playfair Display', serif;
+    
     font-weight: 700;
     font-size: 24px;
     margin-bottom: 15px;
@@ -1841,7 +1836,7 @@ body.offcanvas .betty-nav-toggle {
 }
 .comments-area .comments-title {
     font-size: 25px;
-    font-family: 'Playfair Display', serif;
+    
     line-height: 1.75em;
     font-weight: 700;
     color: #000;
@@ -1880,7 +1875,7 @@ ol.comment-list li.comment .comment-author .avatar {
 ol.comment-list li.comment .comment-author .name {
     display: inline-block;
     color: #000;
-    font-family: 'Playfair Display', serif;
+    
     font-size: 18px;
     line-height: 1.75em;
     font-weight: 700;
@@ -1990,7 +1985,7 @@ ol.comment-list li .children li {
     -ms-border-radius: 0;
     border-radius: 0;
     padding: 0;
-    font-family: 'Playfair Display', serif;
+    
     font-size: 16px;
     line-height: 1.75em;
     font-weight: 400;
@@ -2004,7 +1999,6 @@ ol.comment-list li .children li {
     border: 1px solid #ececec;
 }
 .btn-contact {
-    font-family: 'Rambla', serif;
     font-size: 16px;
     font-weight: 400;
     border-radius: 0;
@@ -2027,7 +2021,7 @@ ol.comment-list li .children li {
     color: #fff;
 }
 #message {
-    font-family: 'Rambla', sans-serif;
+    
     height: 150px;
     padding: 12px;
     border: 1px solid #ececec;

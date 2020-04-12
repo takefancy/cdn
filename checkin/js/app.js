@@ -1,11 +1,17 @@
 $(function() {
+    function mask(e) {
+        var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
+        return vanillaTextMask.conformToMask(e, mask).conformedValue;
+    }
+    $('#txtPhone').html(mask(''));
     let Keyboard = window.SimpleKeyboard.default;
     let keyboard = new Keyboard({
         maxLength: 10,
         onChange: function(number) {
-            var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
-            number = vanillaTextMask.conformToMask(number, mask).conformedValue;
-            $('#txtPhone').val(number);
+            // var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
+            // number = vanillaTextMask.conformToMask(number, mask).conformedValue;
+            number = mask(number);
+            $('#txtPhone').html(number);
             if (number && number.indexOf('_') < 0) {
                 checkin();
             }
@@ -32,7 +38,7 @@ $(function() {
     function checkin() {
         show('#spin');
         hide('#keyboard');
-        var phone = $('#txtPhone').val(),
+        var phone = $('#txtPhone').html(),
             name = $('#txtName').val();
         $.ajax({
             type: 'POST',

@@ -36,6 +36,9 @@ $(function() {
     $('#btnCheckin').click(checkin);
 
     function checkin() {
+        show('#screenDetails');
+        hide('#screenPhone');
+        return;
         show('#spin');
         hide('#keyboard');
         var phone = $('#txtPhone').html(),

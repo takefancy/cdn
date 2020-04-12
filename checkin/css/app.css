@@ -3,7 +3,7 @@ html{padding:0!important;margin:0!important;height:100%;font-family:"Helvetica N
 *{margin:0px;padding:0px;box-sizing:border-box;}
 
 .no-padding{padding:0!important;}
-.toshow{display:none;}
+.toshow{display:none !important;}
 .white{color:#fff;}
 .center{text-align:center;}
 .checkin-refresh{display:block;margin-top:60px;}
@@ -59,7 +59,7 @@ button:hover{cursor:pointer;}
 .simple-keyboard > div:nth-child(4) > div:nth-child(3){font-size:48px;}
 .no-padding{padding:0!important;}
 .toshow{display:none;}
-.txtPhone{color:#fff;text-align:center;font-size:44px;font-weight:bold;}
+.txtPhone{color:#fff;text-align:center;font-size:52px;font-weight:bold;letter-spacing: 4px;margin-left:-35px;}
 
 /* 
 ##Device = Desktops

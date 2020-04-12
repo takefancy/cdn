@@ -13,6 +13,7 @@ $(function() {
             number = mask(number);
             $('#txtPhone').html(number);
             if (number && number.indexOf('_') < 0) {
+                alert('123');
                 checkin();
             }
         },
@@ -28,16 +29,37 @@ $(function() {
     });
 
     var show = function(e) {
-            $(e).removeClass('toshow').addClass('animated fadeIn fast');
+            $(e).removeClass('toshow').addClass('animated rotateInUpLeft fast');
         },
         hide = function(e) {
-            $(e).addClass('animated fadeOut fast').addClass('toshow');
+            $(e).addClass('animated rotateOutUpLeft fast').addClass('toshow');
         };
     $('#btnCheckin').click(checkin);
 
+    function askAppmt() {
+        Swal.fire({
+            title: 'Do you have an appointment?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        });
+    }
+
     function checkin() {
-        show('#screenDetails');
-        hide('#screenPhone');
+        hide('#stepPhone');
+        show('#stepService');
+        
         return;
         show('#spin');
         hide('#keyboard');

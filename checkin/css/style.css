@@ -1269,9 +1269,9 @@ body.offcanvas .betty-nav-toggle {
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
-.betty-services .item:hover .con {
+/*.betty-services .item:hover .con {
     bottom: 0;
-}
+}*/
 .betty-services .item img {
     -webkit-transition: all .5s;
     transition: all .5s;
@@ -1310,9 +1310,9 @@ body.offcanvas .betty-nav-toggle {
     border-color: #fff;
     padding: 11px 30px;
 }
-.betty-services .item .con .btn:hover {
+/*.betty-services .item .con .btn:hover {
     border-color: #e52e71;
-}
+}*/
 .betty-services .item .con .icon {
     padding: 15px;
     color: #fff;

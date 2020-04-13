@@ -1,26 +1,28 @@
 $(function() {
+    var step = 1,
+        name = '',
+        appointment = true,
+        staffs = [],
+        services = [];
+
     function mask(e) {
         var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
         return vanillaTextMask.conformToMask(e, mask).conformedValue;
     }
     $('#txtPhone').html(mask(''));
-    let Keyboard = window.SimpleKeyboard.default;
-    let keyboard = new Keyboard({
+    var keyboard = new window.SimpleKeyboard.default({
         maxLength: 10,
         onChange: function(number) {
-            // var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
-            // number = vanillaTextMask.conformToMask(number, mask).conformedValue;
             number = mask(number);
             $('#txtPhone').html(number);
             if (number && number.indexOf('_') < 0) {
-                alert('123');
-                checkin();
+                checkPhone();
             }
         },
         onKeyPress: function(e) {
-            if (e === '{enter}') {
-                checkin();
-            }
+            // if (e === '{enter}') {
+            //     checkin();
+            // }
         },
         layout: {
             default: ["1 2 3", "4 5 6", "7 8 9", "{bksp} 0 {enter}"]
@@ -28,41 +30,61 @@ $(function() {
         theme: "hg-theme-default hg-layout-numeric numeric-theme"
     });
 
-    var show = function(e) {
-            $(e).removeClass('toshow').addClass('animated rotateInUpLeft fast');
+    var show = function(e, effect) {
+            effect = effect || 'rotateInUpLeft';
+            $(e).removeClass('toshow').addClass(effect + ' animated fast');
         },
-        hide = function(e) {
-            $(e).addClass('animated rotateOutUpLeft fast').addClass('toshow');
+        hide = function(e, effect) {
+            effect = effect || 'rotateOutUpLeft';
+            $(e).addClass(effect + ' animated fast').addClass('toshow');
         };
-    $('#btnCheckin').click(checkin);
 
-    function askAppmt() {
-        Swal.fire({
-            title: 'Do you have an appointment?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+    function checkPhone() {
+        $.ajax({
+            type: 'POST',
+            url: '/checkin/phone',
+            data: JSON.stringify({
+                phone: $('#txtPhone').html()
+            }),
+            contentType: "application/json",
+            dataType: 'json'
+        }).done(function(e) {
+            if (e.new) {
+                goto(2);
+            } else {
+                goto(3);
             }
         });
     }
 
-    function checkin() {
-        hide('#stepPhone');
-        show('#stepService');
-        
-        return;
-        show('#spin');
-        hide('#keyboard');
+    $('#btnSubmitName').click(function() {
+        name = $('#txtName').val();
+        if (name) {
+            goto(3);
+        } else {
+            show('#nameError', 'fadeIn');
+        }
+    });
+
+    $('#btnAppointment').click(function() {
+        appointment = true;
+        goto(4);
+    });
+
+    $('#btnWalkins').click(function() {
+        appointment = false;
+        goto(5);
+    });
+
+    $('#btnSubmitStaffs').click(function() {
+        $('.staff.clicked').each(function(e) {
+            staffs.push($(this).html())
+        });
+        console.log(staffs);
+        goto(5);
+    });
+
+    $('#btnSubmitServices').click(function() {
         var phone = $('#txtPhone').html(),
             name = $('#txtName').val();
         $.ajax({
@@ -70,7 +92,10 @@ $(function() {
             url: '/checkin',
             data: JSON.stringify({
                 phone: phone,
-                name: name
+                name: name,
+                staffs: staffs,
+                services: services,
+                appointment: appointment
             }),
             contentType: "application/json",
             dataType: 'json'
@@ -86,7 +111,16 @@ $(function() {
                 show('#welcome');
                 hide('#spin');
             }
-
         });
+    });
+
+    $('.staff').click(function() {
+        $(this).toggleClass('clicked');
+    });
+
+    function goto(e) {
+        hide('#step' + step);
+        step = e;
+        show('#step' + step);
     }
 });

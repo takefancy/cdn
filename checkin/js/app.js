@@ -85,6 +85,9 @@ $(function() {
     });
 
     $('#btnSubmitServices').click(function() {
+        $('.service-item.active h5').each(function(e) {
+            services.push($(this).html())
+        });
         var phone = $('#txtPhone').html(),
             name = $('#txtName').val();
         $.ajax({
@@ -116,6 +119,10 @@ $(function() {
 
     $('.staff').click(function() {
         $(this).toggleClass('clicked');
+    });
+
+    $('.service-item').click(function() {
+        $(this).toggleClass('active');
     });
 
     function goto(e) {

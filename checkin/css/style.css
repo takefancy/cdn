@@ -1257,7 +1257,7 @@ body.offcanvas .betty-nav-toggle {
     overflow: hidden;
     margin-bottom: 30px;
 }
-.betty-services .item:hover img {
+/*.betty-services .item:hover img {
     -webkit-filter: none;
     filter: none;
     -webkit-transform: scale(1.09, 1.09);
@@ -1268,7 +1268,7 @@ body.offcanvas .betty-nav-toggle {
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
-}
+}*/
 /*.betty-services .item:hover .con {
     bottom: 0;
 }*/

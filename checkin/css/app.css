@@ -33,7 +33,7 @@ input.big{}
 /*------------------------------------------------------------------
 [ Form ]*/
 .login-form{width:100%;}
-.wrap-input{width:100%;position:relative;margin-bottom:30px;}
+.wrap-input{width:100%;position:relative;margin-bottom:60px;}
 .input{font-size:16px;color:#fff;line-height:1.2;display:block;width:100%;height:45px;background:transparent;padding:0 5px 0 38px;}
 .checkin .input{font-size:38px;}
 
@@ -75,7 +75,7 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .form-progress-indicator.two{left:33%;}
 .form-progress-indicator.three{left:66%;}
 .form-progress-indicator.four{left:100%;}
-.form-progress-indicator.active{animation:bounce 0.5s forwards;animation-delay:0.5s;border-color:#0bcc6c;}
+.form-progress-indicator.active{border-color:#0bcc6c;}
 
 /* 
 ##Device = Desktops
@@ -129,13 +129,16 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .service-item.active{border-bottom:8px solid #0bcc6c;}
 .service-item .name{position:absolute;bottom:0;left:0;right:0;text-align:center;}
 .service-item .name h5{color:#fff;text-shadow:0 1px 0 #000;}
-a.fancy{color:#a51890 !important;}
+
+.marginTop15{margin-top:15px;}
+
 .upper{text-transform: uppercase;}
-.color-1{color:#ff4f81 !important;}
-.color-2{color:#8e43e7 !important;}
-.color-3{color:#1cc7d0 !important;}
-.color-4{color:#00cc99 !important;}
+.color-1{color:#e52e71 !important;}
+.color-2{color:#a51890 !important;}
+.color-3{color:#0099e5 !important;}
+.color-4{color:#be0027 !important;}
 .color-5{color:#813867 !important;}
 .color-6{color:#ff6050 !important;}
 .color-7{color:#fc3d39 !important;}
-.color-8{color:#5fc9f8 !important;}
+.color-8{color:#2dde98 !important;}
+.color-11{color:#ffdd00 !important;}

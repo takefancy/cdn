@@ -106,6 +106,7 @@ $(function() {
             client: {
                 name: ''
             },
+            operator: null,
             appoinment: 0,
             step: 1,
             phone: ''
@@ -155,6 +156,16 @@ $(function() {
             setName: function() {
                 this.step = 3;
             },
+            selectStaff: function(i) {
+                this.$set(i, 'selected', !i.selected);
+            },
+            submitStaff: function() {
+                var staffs = this.operator.staffs.filter(function(e){
+                    return e.selected;
+                });
+                console.log(staffs);
+                this.step = 5;
+            },
             setAppointment: function(i) {
                 this.appoinment = i;
                 if (i) {
@@ -162,8 +173,37 @@ $(function() {
                 } else {
                     this.step = 5;
                 }
+            },
+            checkin: function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/checkin',
+                    data: JSON.stringify({
+                        phone: phone,
+                        name: name,
+                        staffs: staffs,
+                        services: services,
+                        appointment: appointment
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                }).done(function(e) {
+                    if (e.requireName) {
+                        hide('#spin');
+                        show('#nameInput');
+                    } else if (e.success) {
+                        hide('#nameInput');
+                        $('#operator').html(e.operator);
+                        $('#order').html('#' + e.order);
+                        $('#name').html(name || e.name);
+                        show('#welcome');
+                        hide('#spin');
+                    }
+                });
             }
         },
-        created: function() {}
+        created: function() {
+            this.operator = JSON.parse($('#operator').val());
+        }
     });
 });

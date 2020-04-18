@@ -129,3 +129,13 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .service-item.active{border-bottom:8px solid #0bcc6c;}
 .service-item .name{position:absolute;bottom:0;left:0;right:0;text-align:center;}
 .service-item .name h5{color:#fff;text-shadow:0 1px 0 #000;}
+a.fancy{color:#a51890 !important;}
+.upper{text-transform: uppercase;}
+.color-1{color:#ff4f81 !important;}
+.color-2{color:#8e43e7 !important;}
+.color-3{color:#1cc7d0 !important;}
+.color-4{color:#00cc99 !important;}
+.color-5{color:#813867 !important;}
+.color-6{color:#ff6050 !important;}
+.color-7{color:#fc3d39 !important;}
+.color-8{color:#5fc9f8 !important;}

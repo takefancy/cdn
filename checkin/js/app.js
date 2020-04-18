@@ -1,35 +1,10 @@
 $(function() {
     var step = 1,
+        client = null,
         name = '',
         appointment = true,
         staffs = [],
         services = [];
-
-    function mask(e) {
-        var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
-        return vanillaTextMask.conformToMask(e, mask).conformedValue;
-    }
-    $('#txtPhone').html(mask(''));
-    var keyboard = new window.SimpleKeyboard.default({
-        maxLength: 10,
-        onChange: function(number) {
-            number = mask(number);
-            $('#txtPhone').html(number);
-            if (number && number.indexOf('_') < 0) {
-                checkPhone();
-            }
-        },
-        onKeyPress: function(e) {
-            // if (e === '{enter}') {
-            //     checkin();
-            // }
-        },
-        layout: {
-            default: ["1 2 3", "4 5 6", "7 8 9", "{bksp} 0 {enter}"]
-        },
-        theme: "hg-theme-default hg-layout-numeric numeric-theme"
-    });
-
     var show = function(e, effect) {
             effect = effect || 'rotateInUpLeft';
             $(e).removeClass('toshow').addClass(effect + ' animated fast');
@@ -49,14 +24,14 @@ $(function() {
             contentType: "application/json",
             dataType: 'json'
         }).done(function(e) {
-            if (e.new) {
-                goto(2);
-            } else {
+            if (e.client) {
+                client = e.client;
                 goto(3);
+            } else {
+                goto(2);
             }
         });
     }
-
     $('#btnSubmitName').click(function() {
         name = $('#txtName').val();
         if (name) {
@@ -65,17 +40,14 @@ $(function() {
             show('#nameError', 'fadeIn');
         }
     });
-
     $('#btnAppointment').click(function() {
         appointment = true;
         goto(4);
     });
-
     $('#btnWalkins').click(function() {
         appointment = false;
         goto(5);
     });
-
     $('#btnSubmitStaffs').click(function() {
         $('.staff.clicked').each(function(e) {
             staffs.push($(this).html())
@@ -83,7 +55,6 @@ $(function() {
         console.log(staffs);
         goto(5);
     });
-
     $('#btnSubmitServices').click(function() {
         $('.service-item.active h5').each(function(e) {
             services.push($(this).html())
@@ -116,11 +87,9 @@ $(function() {
             }
         });
     });
-
     $('.staff').click(function() {
         $(this).toggleClass('clicked');
     });
-
     $('.service-item').click(function() {
         $(this).toggleClass('active');
     });
@@ -130,4 +99,71 @@ $(function() {
         step = e;
         show('#step' + step);
     }
+    new Vue({
+        el: '#app',
+        delimiters: ['${', '}'],
+        data: {
+            client: {
+                name: ''
+            },
+            appoinment: 0,
+            step: 1,
+            phone: ''
+        },
+        computed: {
+            formatedPhone: function() {
+                return this.mask(this.phone);
+            }
+        },
+        methods: {
+            mask: function(e) {
+                var mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/];
+                return vanillaTextMask.conformToMask(e, mask).conformedValue;
+            },
+            isValid: function(phone) {
+                return phone.length === 10;
+            },
+            keypress: function(i) {
+                if (i === -1) {
+                    this.phone = this.phone.slice(0, -1);
+                } else {
+                    this.phone += i;
+                }
+                if (this.isValid(this.phone)) {
+                    this.checkPhone();
+                }
+            },
+            checkPhone: function() {
+                var that = this;
+                $.ajax({
+                    type: 'POST',
+                    url: '/checkin/phone',
+                    data: JSON.stringify({
+                        phone: that.phone
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                }).done(function(e) {
+                    if (e.client) {
+                        that.client = e.client;
+                        that.step = 3;
+                    } else {
+                        that.step = 2;
+                    }
+                });
+            },
+            setName: function() {
+                this.step = 3;
+            },
+            setAppointment: function(i) {
+                this.appoinment = i;
+                if (i) {
+                    this.step = 4;
+                } else {
+                    this.step = 5;
+                }
+            }
+        },
+        created: function() {}
+    });
 });

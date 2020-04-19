@@ -10,7 +10,8 @@ $(function() {
             selectedStaffs: [],
             selectedServices: [],
             appoinment: 0,
-            step: 6,
+            checkingPhone: false,
+            step: 1,
             phone: ''
         },
         computed: {
@@ -30,14 +31,19 @@ $(function() {
                 if (i === -1) {
                     this.phone = this.phone.slice(0, -1);
                 } else {
-                    this.phone += i;
-                }
-                if (this.isValid(this.phone)) {
-                    this.checkPhone();
+                    if (this.isValid(this.phone)) {
+                        return this.checkPhone();
+                    } else {
+                        this.phone += i;
+                        if (this.isValid(this.phone)) {
+                            return this.checkPhone();
+                        }
+                    }
                 }
             },
             checkPhone: function() {
                 var that = this;
+                this.checkingPhone = true;
                 $.ajax({
                     type: 'POST',
                     url: '/checkin/phone',
@@ -47,10 +53,12 @@ $(function() {
                     contentType: 'application/json',
                     dataType: 'json'
                 }).done(function(e) {
+                    that.checkingPhone = false;
                     if (e.client) {
                         that.client = e.client;
                         that.step = 3;
                     } else {
+                        that.client = {},
                         that.step = 2;
                     }
                 });
@@ -68,9 +76,7 @@ $(function() {
                 this.selectedStaffs = this.operator.staffs.filter(function(e) {
                     return e.selected;
                 });
-                if (this.selectedStaffs && this.selectedStaffs.length > 0) {
-                    this.step = 5;
-                }
+                this.step = 5;
             },
             setAppointment: function(i) {
                 this.appointment = i;
@@ -80,7 +86,15 @@ $(function() {
                     this.step = 5;
                 }
             },
+            back: function() {
+                if (this.step === 5 && !this.appointment || this.step === 3 && this.client._id) {
+                    this.step -= 2;
+                } else {
+                    this.step -= 1;
+                }
+            },
             checkin: function() {
+                var that = this;
                 this.selectedServices = this.operator.services.filter(function(e) {
                     return e.selected;
                 });
@@ -97,10 +111,10 @@ $(function() {
                     contentType: 'application/json',
                     dataType: 'json'
                 }).done(function(e) {
-
+                    that.step = 6;
                 });
             },
-            refresh: function(){
+            refresh: function() {
                 window.location.href = '/checkin';
             }
         },

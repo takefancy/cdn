@@ -10,7 +10,7 @@ $(function() {
             selectedStaffs: [],
             selectedServices: [],
             appoinment: 0,
-            step: 1,
+            step: 6,
             phone: ''
         },
         computed: {
@@ -99,6 +99,9 @@ $(function() {
                 }).done(function(e) {
 
                 });
+            },
+            refresh: function(){
+                window.location.href = '/checkin';
             }
         },
         created: function() {

@@ -146,4 +146,5 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .color-11{color:#ffdd00!important;}
 
 .back{font-size:40px;font-weight: bold;position: absolute;bottom: 20px;left: 42%;}
+.clear-phone{font-size:36px;font-weight: bold;float: right;margin: -45px -15px 0 0;}
 .phone-spin{float: right;margin: -15px -5px 0 0;}

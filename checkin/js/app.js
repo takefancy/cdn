@@ -27,6 +27,9 @@ $(function() {
             isValid: function(phone) {
                 return phone.length === 10;
             },
+            clearPhone: function() {
+                this.phone = '';
+            },
             keypress: function(i) {
                 if (i === -1) {
                     this.phone = this.phone.slice(0, -1);
@@ -59,7 +62,7 @@ $(function() {
                         that.step = 3;
                     } else {
                         that.client = {},
-                        that.step = 2;
+                            that.step = 2;
                     }
                 });
             },

@@ -1,104 +1,4 @@
 $(function() {
-    var step = 1,
-        client = null,
-        name = '',
-        appointment = true,
-        staffs = [],
-        services = [];
-    var show = function(e, effect) {
-            effect = effect || 'rotateInUpLeft';
-            $(e).removeClass('toshow').addClass(effect + ' animated fast');
-        },
-        hide = function(e, effect) {
-            effect = effect || 'rotateOutUpLeft';
-            $(e).addClass(effect + ' animated fast').addClass('toshow');
-        };
-
-    function checkPhone() {
-        $.ajax({
-            type: 'POST',
-            url: '/checkin/phone',
-            data: JSON.stringify({
-                phone: $('#txtPhone').html()
-            }),
-            contentType: "application/json",
-            dataType: 'json'
-        }).done(function(e) {
-            if (e.client) {
-                client = e.client;
-                goto(3);
-            } else {
-                goto(2);
-            }
-        });
-    }
-    $('#btnSubmitName').click(function() {
-        name = $('#txtName').val();
-        if (name) {
-            goto(3);
-        } else {
-            show('#nameError', 'fadeIn');
-        }
-    });
-    $('#btnAppointment').click(function() {
-        appointment = true;
-        goto(4);
-    });
-    $('#btnWalkins').click(function() {
-        appointment = false;
-        goto(5);
-    });
-    $('#btnSubmitStaffs').click(function() {
-        $('.staff.clicked').each(function(e) {
-            staffs.push($(this).html())
-        });
-        console.log(staffs);
-        goto(5);
-    });
-    $('#btnSubmitServices').click(function() {
-        $('.service-item.active h5').each(function(e) {
-            services.push($(this).html())
-        });
-        var phone = $('#txtPhone').html(),
-            name = $('#txtName').val();
-        $.ajax({
-            type: 'POST',
-            url: '/checkin',
-            data: JSON.stringify({
-                phone: phone,
-                name: name,
-                staffs: staffs,
-                services: services,
-                appointment: appointment
-            }),
-            contentType: "application/json",
-            dataType: 'json'
-        }).done(function(e) {
-            if (e.requireName) {
-                hide('#spin');
-                show('#nameInput');
-            } else if (e.success) {
-                hide('#nameInput');
-                $('#operator').html(e.operator);
-                $('#order').html('#' + e.order);
-                $('#name').html(name || e.name);
-                show('#welcome');
-                hide('#spin');
-            }
-        });
-    });
-    $('.staff').click(function() {
-        $(this).toggleClass('clicked');
-    });
-    $('.service-item').click(function() {
-        $(this).toggleClass('active');
-    });
-
-    function goto(e) {
-        hide('#step' + step);
-        step = e;
-        show('#step' + step);
-    }
     new Vue({
         el: '#app',
         delimiters: ['${', '}'],
@@ -107,6 +7,8 @@ $(function() {
                 name: ''
             },
             operator: null,
+            selectedStaffs: [],
+            selectedServices: [],
             appoinment: 0,
             step: 1,
             phone: ''
@@ -142,7 +44,7 @@ $(function() {
                     data: JSON.stringify({
                         phone: that.phone
                     }),
-                    contentType: "application/json",
+                    contentType: 'application/json',
                     dataType: 'json'
                 }).done(function(e) {
                     if (e.client) {
@@ -159,15 +61,19 @@ $(function() {
             selectStaff: function(i) {
                 this.$set(i, 'selected', !i.selected);
             },
+            selectService: function(i) {
+                this.$set(i, 'selected', !i.selected);
+            },
             submitStaff: function() {
-                var staffs = this.operator.staffs.filter(function(e){
+                this.selectedStaffs = this.operator.staffs.filter(function(e) {
                     return e.selected;
                 });
-                console.log(staffs);
-                this.step = 5;
+                if (this.selectedStaffs && this.selectedStaffs.length > 0) {
+                    this.step = 5;
+                }
             },
             setAppointment: function(i) {
-                this.appoinment = i;
+                this.appointment = i;
                 if (i) {
                     this.step = 4;
                 } else {
@@ -175,30 +81,23 @@ $(function() {
                 }
             },
             checkin: function() {
+                this.selectedServices = this.operator.services.filter(function(e) {
+                    return e.selected;
+                });
                 $.ajax({
                     type: 'POST',
                     url: '/checkin',
                     data: JSON.stringify({
-                        phone: phone,
-                        name: name,
-                        staffs: staffs,
-                        services: services,
-                        appointment: appointment
+                        phone: this.phone,
+                        name: this.client.name,
+                        staffs: this.selectedStaffs,
+                        services: this.selectedServices,
+                        appointment: this.appointment
                     }),
-                    contentType: "application/json",
+                    contentType: 'application/json',
                     dataType: 'json'
                 }).done(function(e) {
-                    if (e.requireName) {
-                        hide('#spin');
-                        show('#nameInput');
-                    } else if (e.success) {
-                        hide('#nameInput');
-                        $('#operator').html(e.operator);
-                        $('#order').html('#' + e.order);
-                        $('#name').html(name || e.name);
-                        show('#welcome');
-                        hide('#spin');
-                    }
+
                 });
             }
         },

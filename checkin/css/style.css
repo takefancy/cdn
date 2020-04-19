@@ -408,7 +408,8 @@ input[type="checkbox"] {
     position: fixed;
     bottom: 0;
     top: 0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    overflow: hidden;
     z-index: 1001;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
@@ -815,6 +816,7 @@ input[type="checkbox"] {
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
+    overflow: hidden;
 }
 @media screen and (max-width: 1200px) {
     #betty-main {

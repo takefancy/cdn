@@ -13,6 +13,7 @@ $(function() {
             checkingPhone: false,
             step: 1,
             refreshTime: 0,
+            timer: null,
             phone: ''
         },
         computed: {
@@ -48,8 +49,9 @@ $(function() {
             countdown: function() {
                 var that = this;
                 this.refreshTime = 10;
-                setInterval(function() {
+                this.timer = setInterval(function() {
                     if (that.refreshTime <= 0) {
+                        clearInterval(that.timer);
                         that.refresh();
                     } else {
                         that.refreshTime -= 1;

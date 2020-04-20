@@ -1,5 +1,5 @@
 body,
-html{padding:0!important;margin:0!important;height:100%;font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; overflow:hidden;}
+html{padding:0!important;margin:0!important;height:100%;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;overflow:hidden;}
 *{margin:0px;padding:0px;box-sizing:border-box;}
 .no-padding{padding:0!important;}
 .toshow{display:none!important;}
@@ -58,7 +58,7 @@ input.big{}
 .staff-select{margin:5px 0;}
 .staff{display:block;padding:8px;font-size:18px;}
 .badge-normal{color:#007bff;border:1px solid #007bff;}
-.badge-selected{color:#fff;box-shadow: 0 0 10px #28a745;background-color: #28a745;}
+.badge-selected{color:#fff;box-shadow:0 0 10px #28a745;background-color:#28a745;}
 .checkin-hint{color:#fff;font-size:1.53rem;font-weight:bold;width:100%;text-align:center;}
 .privacy{color:#fff;font-size:0.9rem;font-weight:bold;width:100%;text-align:center;padding-top:7px;}
 .btn-xlg{font-size:2.9rem;}
@@ -125,7 +125,7 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 }
 .padding5{padding:5px!important;}
 .service-item{border-radius:10px;}
-.service-item.active{border-bottom:8px solid #0bcc6c;}
+.service-item.active{border-bottom:10px solid #0bcc6c;box-shadow:0 0 20px #28a745;}
 .service-item .name{position:absolute;bottom:0;left:0;right:0;text-align:center;}
 .service-item .name h5{color:#fff;text-shadow:0 1px 0 #000;}
 .marginTop15{margin-top:15px;}
@@ -139,7 +139,7 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .color-7{color:#fc3d39!important;}
 .color-8{color:#2dde98!important;}
 .color-11{color:#ffdd00!important;}
-
-.back{font-size:62px;font-weight: bold;position: absolute;bottom: 20px;left: 42%;}
-.clear-phone{font-size:36px;font-weight: bold;float: right;margin: -50px -18px 0 0;}
-.phone-spin{float: right;margin: -10px -5px 0 0;}
+.back{font-size:62px;font-weight:bold;position:absolute;bottom:20px;left:42%;}
+.clear-phone{font-size:36px;font-weight:bold;float:right;margin:-50px -18px 0 0;}
+.phone-spin{float:right;margin:-10px -5px 0 0;}
+.txt-name{font-size:60px !important;font-weight:bold !important;text-transform:capitalize !important;}

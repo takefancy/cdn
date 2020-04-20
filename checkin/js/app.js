@@ -12,6 +12,7 @@ $(function() {
             appoinment: 0,
             checkingPhone: false,
             step: 1,
+            refreshTime: 0,
             phone: ''
         },
         computed: {
@@ -43,6 +44,17 @@ $(function() {
                         }
                     }
                 }
+            },
+            countdown: function() {
+                var that = this;
+                this.refreshTime = 10;
+                setInterval(function() {
+                    if (that.refreshTime <= 0) {
+                        that.refresh();
+                    } else {
+                        that.refreshTime -= 1;
+                    }
+                }, 1000);
             },
             checkPhone: function() {
                 var that = this;
@@ -115,6 +127,7 @@ $(function() {
                     dataType: 'json'
                 }).done(function(e) {
                     that.step = 6;
+                    that.countdown();
                 });
             },
             refresh: function() {
@@ -123,6 +136,7 @@ $(function() {
         },
         created: function() {
             this.operator = JSON.parse($('#operator').val());
+            this.countdown();
         }
     });
 });

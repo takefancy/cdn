@@ -138,7 +138,6 @@ $(function() {
         },
         created: function() {
             this.operator = JSON.parse($('#operator').val());
-            this.countdown();
         }
     });
 });

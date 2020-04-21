@@ -97,14 +97,10 @@ $(function() {
             },
             setAppointment: function(i) {
                 this.appointment = i;
-                if (i) {
-                    this.step = 4;
-                } else {
-                    this.step = 5;
-                }
+                this.step = 4;
             },
             back: function() {
-                if (this.step === 5 && !this.appointment || this.step === 3 && this.client._id) {
+                if (this.step === 3 && this.client._id) {
                     this.step -= 2;
                 } else {
                     this.step -= 1;

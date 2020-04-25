@@ -6,6 +6,7 @@ $(function() {
             client: {
                 name: ''
             },
+            transaction: null,
             operator: null,
             selectedStaffs: [],
             selectedServices: [],
@@ -73,7 +74,13 @@ $(function() {
                     that.checkingPhone = false;
                     if (e.client) {
                         that.client = e.client;
-                        that.step = 3;
+                        if (e.transaction) {
+                            that.transaction = e.transaction;
+                            that.step = 6;
+                            that.countdown();
+                        } else {
+                            that.step = 3;
+                        }
                     } else {
                         that.client = {},
                             that.step = 2;

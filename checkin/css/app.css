@@ -140,8 +140,9 @@ progress::-webkit-progress-value{background-color:#0bcc6c;transition:all 0.5s ea
 .color-8{color:#2dde98!important;}
 .color-9{color:#8e43e7!important;}
 .color-11{color:#ffdd00!important;}
-.back{font-size:62px;font-weight:bold;position:absolute;bottom:20px;left:42%;}
+.back{font-size:62px;font-weight:bold;position:relative;bottom:90px;left:20px;}
 .clear-phone{font-size:36px;font-weight:bold;float:right;margin:-50px -18px 0 0;}
 .phone-spin{float:right;margin:-10px -5px 0 0;}
 .txt-name{font-size:36px !important;font-weight:bold !important;text-transform:capitalize !important;border-color: #28a745 !important;border-radius: 10px !important;}
 .preload{width:0px height:0px;display: none;}
+.checkin-service-img{min-height: 100px;background-color:#a26eea;}

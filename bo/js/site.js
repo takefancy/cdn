@@ -39,8 +39,7 @@ $(function() {
     }
     $('.badge-color').each(function() {
         var color = $(this).attr('data-bg');
-        console.log('color : ', color);
-        var contrast = (hexcolor) => {
+        var contrast = function(hexcolor) {
             if (!hexcolor) return '';
             // If a leading # is provided, remove it
             if (hexcolor.slice(0, 1) === '#') {
@@ -66,6 +65,17 @@ $(function() {
         }
         $(this).css('background-color', color);
         $(this).css('color', contrast(color));
+    });
+});
+
+//transaction page
+$(function() {
+    $('#btnSearchTransaction').click(function() {
+        var keyword = $('#txtSearch').val();
+        var date = $('#txtDate').html();
+        var url = utils.query('keyword', keyword);
+        url = utils.query('date', date, url);
+        window.location.assign(url);
     });
 });
 
@@ -99,6 +109,16 @@ var utils = {
     },
     round: function(e) {
         return Math.round((e + Number.EPSILON) * 100) / 100;
+    },
+    query: function(key, value, uri) {
+        uri = uri || window.location.href;
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        } else {
+            return uri + separator + key + "=" + value;
+        }
     }
 };
 
@@ -235,7 +255,7 @@ $(function() {
         var start = moment().subtract(29, 'days'),
             end = moment(),
             format = function(e) {
-                return e.format('MMMM D, YYYY');
+                return e.format('YYYY/MM/DD');
             };
         var el = $(this);
         var update = function(start, end) {
@@ -257,5 +277,38 @@ $(function() {
             }
         }, update);
         update(start, end);
+    });
+
+    $('.daterange-hour').each(function() {
+        $(this).daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'YYYY-MM-DD hh:mm A'
+            }
+        });
+    });
+
+    $('.date-single').each(function() {
+        $(this).daterangepicker({
+            singleDatePicker: true,
+            autoUpdateInput: false,
+            drops: 'up'
+        }, function(start, end, label) {
+            // console.log(moment(start).format('YYYY/MM/DD'));
+        });
+    });
+
+    //clockpicker
+    $('.clockpicker').each(function() {
+        var value = $(this).attr('data-value');
+        $(this).clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            twelvehour: true,
+            'default': value
+        });
     });
 });

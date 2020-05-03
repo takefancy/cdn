@@ -78,7 +78,7 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 @media (min-width:480px){
   .mobile-only{visibility:hidden;}
 }
-.sms-preview{font-family:"Helvetica Neue";font-size:18px;font-weight:normal;max-width:450px;margin:50px 10px auto auto;}
+.sms-preview{font-family:"Helvetica Neue";font-size:18px;font-weight:normal;max-width:450px;margin:10px 20px auto auto;}
 .sms-preview div{max-width:255px;word-wrap:break-word;margin-bottom:20px;line-height:24px;}
 .sms-from-me{position:relative;padding:10px 20px;color:white;background:#0b93f6;border-radius:25px;float:right;}
 .sms-from-me:before{content:"";position:absolute;bottom:-2px;right:-7px;height:20px;border-right:20px solid #0b93f6;border-bottom-left-radius:16px 14px;-webkit-transform:translate(0,-2px);}
@@ -215,5 +215,5 @@ ul.pagination li{border:1px solid #ccc;margin:0 5px;}
 }
 @page{size:auto;margin:0;padding:0}
 
-.daterange-picker{background: #fff; cursor: pointer; padding: 7px 10px; border: 1px solid #ccc; width: 100%;border-radius: 8px;}
-
+.daterange-picker{background: #fff; cursor: pointer; padding: 7px 10px; border: 1px solid #ccc; width: 225px;border-radius: 8px;}
+.search-form{width:100%;}

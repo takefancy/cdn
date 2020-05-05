@@ -30,6 +30,24 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .nav-danger.active{background-color:#FF5B5C!important;}
 .block-center{margin:0 auto;display:block;}
 
+/*checkout*/
+.nav-waiting.active{background-color:#ff4f81!important;}
+.nav-serving.active{background-color:#8e43e7!important;}
+.nav-served.active{background-color:#009f4d!important;}
+.nav-canceled.active{background-color:#e4002b!important;}
+tr.waiting h2,
+tr.waiting b,
+tr.waiting i{color:#ff4f81!important;}
+tr.serving h2,
+tr.serving b,
+tr.serving i{color:#8e43e7!important;}
+tr.done h2,
+tr.done b,
+tr.done i{color:#009f4d!important;}
+tr.canceled h2,
+tr.canceled b,
+tr.canceled i{color:#e4002b!important;}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -115,7 +133,7 @@ table.checkout th{padding:1rem 0.6em;}
 
 /*pagination*/
 .pagination-container{margin-top:30px;}
-.pagination-icon{font-size:1rem !important;}
+.pagination-icon{font-size:1rem!important;}
 ul.pagination li{border:1px solid #ccc;margin:0 5px;}
 
 /*Invoice*/
@@ -214,6 +232,5 @@ ul.pagination li{border:1px solid #ccc;margin:0 5px;}
   .invoice-subtotal .row .col{width:50%!important}
 }
 @page{size:auto;margin:0;padding:0}
-
-.daterange-picker{background: #fff; cursor: pointer; padding: 7px 10px; border: 1px solid #ccc; width: 225px;border-radius: 8px;}
+.daterange-picker{background:#fff;cursor:pointer;padding:7px 10px;border:1px solid #ccc;width:225px;border-radius:8px;}
 .search-form{width:100%;}

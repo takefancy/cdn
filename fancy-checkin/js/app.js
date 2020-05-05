@@ -16,7 +16,9 @@ $(function() {
             refreshTime: 0,
             timer: null,
             phone: '',
-            phoneError: ''
+            phoneError: '',
+            api: '',
+            loading: false
         },
         computed: {
             formatedPhone: function() {
@@ -65,9 +67,10 @@ $(function() {
                 this.checkingPhone = true;
                 $.ajax({
                     type: 'POST',
-                    url: '/checkin/phone',
+                    url: this.api + '/checkin/phone',
                     data: JSON.stringify({
-                        phone: that.phone
+                        phone: that.phone,
+                        operatorId: this.operator._id
                     }),
                     contentType: 'application/json',
                     dataType: 'json'
@@ -124,19 +127,28 @@ $(function() {
                 this.selectedServices = this.operator.services.filter(function(e) {
                     return e.selected;
                 });
+                this.selectedStaffs = this.selectedStaffs.map(function(e){
+                    return e._id;
+                });
+                this.selectedServices = this.selectedServices.map(function(e){
+                    return e._id;
+                });
+                this.loading = true;
                 $.ajax({
                     type: 'POST',
-                    url: '/checkin',
+                    url: this.api + '/checkin',
                     data: JSON.stringify({
                         phone: this.phone,
                         name: this.client.name,
                         staffs: this.selectedStaffs,
                         services: this.selectedServices,
-                        appointment: this.appointment
+                        appointment: this.appointment,
+                        operatorId: this.operator._id
                     }),
                     contentType: 'application/json',
                     dataType: 'json'
                 }).done(function(e) {
+                    this.loading = false;
                     that.step = 6;
                     that.countdown();
                 });
@@ -147,6 +159,7 @@ $(function() {
         },
         created: function() {
             this.operator = JSON.parse($('#operator').val());
+            this.api = $('#api').val();
         }
     });
 });

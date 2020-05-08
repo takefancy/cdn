@@ -756,11 +756,11 @@ body.footer-hidden footer {
   letter-spacing: 0.04rem;
   font-size: 1.5rem;
   float: left;
-  animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+  /*animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;*/
 }
 
 .main-menu .navbar-header .modern-nav-toggle {
-  animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+  /*animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;*/
   margin: 0.75rem 0 0;
 }
 

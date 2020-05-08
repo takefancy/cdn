@@ -10,6 +10,7 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .w70{width:70px!important;}
 .w80{width:80px!important;}
 .w100{width:100px!important;}
+.w140{width:140px!important;}
 .w180{width:180px!important;}
 .color-1{color:#e52e71!important;}
 .color-2{color:#a51890!important;}
@@ -236,5 +237,10 @@ ul.pagination li{border:1px solid #ccc;margin:0 5px;}
 .search-form{width:100%;}
 
 /*nav*/
-    .nav-logo{width: 40px;}
-    .wrapper-no-header{margin-top:1rem !important; padding-top: 0 !important;}
+.nav-logo{width:40px;}
+.wrapper-no-header{margin-top:1rem!important;padding-top:0!important;}
+
+/*me.takefancy.com*/
+.me-review-icon{width:125px;display:block;margin:0 auto;}
+.me-content-wrapper{padding:1.5rem .8rem !important;}
+.me-form-btn{margin:25px 0;}

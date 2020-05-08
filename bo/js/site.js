@@ -1,3 +1,8 @@
+function logout() {
+    if (confirm('Are you sure to logout?')) {
+        window.location.assign('/logout');
+    }
+}
 //pagination
 $(function() {
     if ($('#pagination')) {

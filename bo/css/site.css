@@ -6,6 +6,8 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .toshow{display:none;}
 .center{text-align:center;}
 .no-overflow{overflow:hidden!important;}
+.capitalize{text-transform: capitalize !important;}
+.uppercase{text-transform: uppercase !important;}
 .w50{width:50px!important;}
 .w70{width:70px!important;}
 .w80{width:80px!important;}

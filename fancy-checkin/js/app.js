@@ -18,7 +18,10 @@ $(function() {
             phone: '',
             phoneError: '',
             api: '',
-            loading: false
+            loading: false,
+            systemError: false,
+            retry: 0,
+            retryLimit: 20
         },
         computed: {
             formatedPhone: function() {
@@ -41,11 +44,11 @@ $(function() {
                     this.phone = this.phone.slice(0, -1);
                 } else {
                     if (this.isValid(this.phone)) {
-                        return this.checkPhone();
+                        return this.submitVerifyPhone();
                     } else {
                         this.phone += i;
                         if (this.isValid(this.phone)) {
-                            return this.checkPhone();
+                            return this.submitVerifyPhone();
                         }
                     }
                 }
@@ -61,6 +64,11 @@ $(function() {
                         that.refreshTime -= 1;
                     }
                 }, 1000);
+            },
+            submitVerifyPhone: function() {
+                this.retry = 0;
+                this.systemError = false;
+                this.checkPhone();
             },
             checkPhone: function() {
                 var that = this;
@@ -96,7 +104,16 @@ $(function() {
                         }
                     }
                 }).fail(function() {
-                    that.checkPhone();
+                    that.retry += 1;
+                    if (that.retry < that.retryLimit) {
+                        setTimeout(function() {
+                            that.checkPhone();
+                        }, 1000);
+                    } else {
+                        that.checkingPhone = false;
+                        that.systemError = true;
+                        that.phoneError = 'An error occurred, please try again or contact our staff';
+                    }
                 });
             },
             setName: function() {

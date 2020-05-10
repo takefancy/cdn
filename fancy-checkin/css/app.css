@@ -6,6 +6,7 @@ html{padding:0!important;margin:0!important;height:100%;font-family:"HelveticaNe
 .white{color:#fff;}
 .center{text-align:center;}
 .checkin-refresh{display:block;margin-top:60px;}
+.checkin-error{color:#fff;font-size:1rem;font-weight:bold;width:100%;text-align:center;}
 
 /*---------------------------------------------*/
 input{outline:none;border:none;}

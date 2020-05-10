@@ -65,6 +65,7 @@ $(function() {
             checkPhone: function() {
                 var that = this;
                 this.checkingPhone = true;
+                that.phoneError = '';
                 $.ajax({
                     type: 'POST',
                     url: this.api + '/checkin/phone',
@@ -94,6 +95,8 @@ $(function() {
                             that.step = 2;
                         }
                     }
+                }).fail(function() {
+                    that.checkPhone();
                 });
             },
             setName: function() {
@@ -127,10 +130,10 @@ $(function() {
                 this.selectedServices = this.operator.services.filter(function(e) {
                     return e.selected;
                 });
-                this.selectedStaffs = this.selectedStaffs.map(function(e){
+                this.selectedStaffs = this.selectedStaffs.map(function(e) {
                     return e._id;
                 });
-                this.selectedServices = this.selectedServices.map(function(e){
+                this.selectedServices = this.selectedServices.map(function(e) {
                     return e._id;
                 });
                 this.loading = true;

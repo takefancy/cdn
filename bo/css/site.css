@@ -5,6 +5,7 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .home-1{padding:20px 20px 8px 20px;margin:20px 0;border-radius:10px;}
 .toshow{display:none;}
 .center{text-align:center;}
+.m-auto{margin:0 auto;}
 .no-overflow{overflow:hidden!important;}
 .capitalize{text-transform: capitalize !important;}
 .uppercase{text-transform: uppercase !important;}
@@ -38,8 +39,14 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .nav-danger.active{background-color:#FF5B5C!important;}
 .block-center{margin:0 auto;display:block;}
 .warning-i{color:#FDAC41 !important;}
-.checkout-client-name{font-size: 1.4rem;}
+
 /*checkout*/
+.checkout-client{display: block;}
+.checkout-client .left{float: left;}
+.checkout-client .right{float:left;padding-left:5px;}
+
+.checkout-client-name{font-size: 1.4rem;}
+
 .nav-waiting.active{background-color:#ff4f81!important;}
 .nav-serving.active{background-color:#8e43e7!important;}
 .nav-served.active{background-color:#009f4d!important;}

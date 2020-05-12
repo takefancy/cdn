@@ -9,6 +9,8 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .no-overflow{overflow:hidden!important;}
 .capitalize{text-transform: capitalize !important;}
 .uppercase{text-transform: uppercase !important;}
+.w30{width:30px!important;}
+.w40{width:40px!important;}
 .w50{width:50px!important;}
 .w70{width:70px!important;}
 .w80{width:80px!important;}
@@ -39,7 +41,7 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .nav-danger.active{background-color:#FF5B5C!important;}
 .block-center{margin:0 auto;display:block;}
 .warning-i{color:#FDAC41 !important;}
-
+.pb-s{padding-bottom: .5rem !important;}
 /*checkout*/
 .checkout-client{display: block;}
 .checkout-client .left{float: left;}
@@ -70,6 +72,7 @@ tr.canceled i{color:#e4002b!important;}
   ##Screen = 1281px to higher resolution desktops
 */
 @media (min-width:1281px){
+  .table td, .table th{padding:.58rem .5rem !important;}
 }
 
 /* 
@@ -77,6 +80,7 @@ tr.canceled i{color:#e4002b!important;}
   ##Screen = B/w 1025px to 1280px
 */
 @media (min-width:1025px) and (max-width:1280px){
+  .table td, .table th{padding:.1rem .3rem !important;}
 }
 
 /* 
@@ -84,6 +88,8 @@ tr.canceled i{color:#e4002b!important;}
   ##Screen = B/w 768px to 1024px
 */
 @media (min-width:768px) and (max-width:1024px){
+  .content-wrapper-full{padding:1.8rem 0 !important;}
+  .table td, .table th{padding:.1rem .2rem !important;}
 }
 
 /* 
@@ -258,5 +264,5 @@ ul.pagination li{border:1px solid #ccc;margin:0 5px;}
 
 /*me.takefancy.com*/
 .me-review-icon{width:125px;display:block;margin:0 auto;}
-.me-content-wrapper{padding:1.5rem .8rem !important;}
+.me-content-wrapper{padding:1.5rem .8rem .2rem .8rem !important;}
 .me-form-btn{margin:25px 0;}

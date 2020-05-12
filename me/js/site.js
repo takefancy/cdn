@@ -17,6 +17,10 @@ window.fbAsyncInit = function() {
 };
 
 $(function() {
+    setTimeout(function(){
+        $('#nav').removeClass('d-none');
+    }, 1000);
+
     $('.select2').each(function() {
         $(this).select2();
     });

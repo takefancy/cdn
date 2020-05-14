@@ -438,7 +438,7 @@ $(function() {
     });
 
     /*
-        <canvas class="fancy-bar-chart" data-src="#transaction" data-label="blah blah"></canvas>
+        <canvas class="fancy-bar-chart" data-src="#transaction" data-label="blah blah" data-stack="0|1"></canvas>
         where #users contains stringify of
         transactions = {
             x: ['23/3', '24/3', '25/3'],
@@ -461,6 +461,7 @@ $(function() {
     $('.fancy-bar-chart').each(function() {
         var data = $($(this).attr('data-src')).val(),
             label = $(this).attr('data-label'),
+            stack = $(this).attr('data-stack'),
             x = $(this).attr('data-x'),
             y = $(this).attr('data-y');
         if (data) {
@@ -493,6 +494,14 @@ $(function() {
                     title: {
                         display: true,
                         text: label
+                    },
+                    scales: {
+                        xAxes: [{
+                            stacked: !!stack
+                        }],
+                        yAxes: [{
+                            stacked: !!stack
+                        }]
                     }
                 }
             };

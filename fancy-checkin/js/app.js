@@ -191,12 +191,10 @@ $(function() {
         arrows: false,
         slidesToShow: 1,
         infinite: true,
-        speed: 0,
+        speed: 500,
+        fade: true,
         autoplay: true,
         autoplaySpeed: 15000,
         cssEase: 'linear'
-    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-        slides.removeClass('animated fadeIn fast')
-            .hide().addClass('animated fadeIn fast').show();
     });
 });

@@ -183,3 +183,20 @@ $(function() {
         }
     });
 });
+
+$(function() {
+    var slides = $('.right-bg');
+    $('.right-bg').slick({
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        infinite: true,
+        speed: 0,
+        autoplay: true,
+        autoplaySpeed: 15000,
+        cssEase: 'linear'
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+        slides.removeClass('animated fadeIn fast')
+            .hide().addClass('animated fadeIn fast').show();
+    });
+});

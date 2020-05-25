@@ -198,3 +198,6 @@ $(function() {
         cssEase: 'linear'
     });
 });
+$(function() {
+    FastClick.attach(document.body);
+});

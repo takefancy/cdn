@@ -48,6 +48,12 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .checkout-client .right{float:left;padding-left:5px;}
 .checkout-error{width:100%;}
 .checkout-client-name{font-size: 1.4rem;}
+a.nav-operator-name:link,
+a.nav-operator-name:visited,
+a.nav-operator-name:hover,
+a.nav-operator-name:active{display:block;margin:0 auto;color:#fff;position:absolute;left:0;width:60%;left:20%;text-align:center;font-size:2.3rem;}
+.nav-checkout-title{font-size: 1.2rem !important;}
+/*============ end.checkout ===============*/
 
 .nav-waiting.active{background-color:#ff4f81!important;}
 .nav-serving.active{background-color:#8e43e7!important;}

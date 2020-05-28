@@ -62,6 +62,7 @@ $(function() {
             'hour': 10,
             'minute': 0
         }),
+        timePickerIncrement: 15,
         locale: {
             format: 'YYYY/MM/DD hh:mm A'
         }

@@ -23,6 +23,7 @@ let VanillaCalendar = (function () {
             availableWeekDays: [],
             availableDates: [],
             date: new Date(),
+            selectedDate: null,
             todaysDate: new Date(),
             button_prev: null,
             button_next: null,
@@ -77,6 +78,9 @@ let VanillaCalendar = (function () {
             }
             if (date.setHours(0,0,0,0).toString() === opts.todaysDate.setHours(0,0,0,0).toString()) {
                 newDayElem.classList.add('vanilla-calendar-date--today')
+            }
+            if (date.setHours(0,0,0,0).toString() === opts.selectedDate.setHours(0,0,0,0).toString()) {
+                newDayElem.classList.add('vanilla-calendar-date--selected')
             }
             
             newDayElem.appendChild(dateElem)

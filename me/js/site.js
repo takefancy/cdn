@@ -17,7 +17,7 @@ window.fbAsyncInit = function() {
 };
 
 $(function() {
-    setTimeout(function(){
+    setTimeout(function() {
         $('#nav').removeClass('d-none');
     }, 1000);
 
@@ -58,10 +58,6 @@ $(function() {
         timePicker: true,
         singleDatePicker: true,
         drops: 'up',
-        startDate: moment().add(1, 'days').set({
-            'hour': 10,
-            'minute': 0
-        }),
         timePickerIncrement: 15,
         locale: {
             format: 'YYYY/MM/DD hh:mm A'
@@ -124,13 +120,20 @@ $(function() {
     });
 
     $('#btnSubmitAppointment').click(function() {
-        var staffs = $('#ddlStaffs').val(),
-            services = $('#ddlServices').val(),
-            date = $('#appointmentTime').val(),
-            note = $('#appointmentNote').val(),
-            bookError = '';
-        if (!date) {
-            bookError = 'Please select booking time';
+        var bookError = '',
+            _time = moment($('#appointmentTime').val(), ['YYYY-MM-DD hh:mm A']).format('YYYY-MM-DD HH:mm');
+        var data = {
+            time: _time,
+            note: $('#appointmentNote').val(),
+            operatorId: $('#operatorId').val(),
+            clientId: $('#clientId').val(),
+            status: 'waiting',
+            staffIds: $('#ddlStaffs').val(),
+            serviceIds: $('#ddlServices').val()
+        };
+        //validation
+        if (!_time) {
+            bookError = 'Please select a time';
         }
         if (bookError) {
             $('#bookError').html(bookError);
@@ -138,13 +141,8 @@ $(function() {
         }
         $.ajax({
             type: 'POST',
-            url: '/profile/book/' + $('#clientId').val(),
-            data: JSON.stringify({
-                staffs: staffs,
-                services: services,
-                date: new Date(date),
-                note: note
-            }),
+            url: $('#api').val() + '/appointment',
+            data: JSON.stringify(data),
             contentType: 'application/json'
         }).done(function(e) {
             window.location.reload();
@@ -156,10 +154,10 @@ $(function() {
         var id = $(this).attr('data-id');
         if (id) {
             $.ajax({
-                type: 'POST',
-                url: '/update-appointment/' + id,
+                type: 'PUT',
+                url: $('#api').val() + '/appointment/' + id,
                 data: JSON.stringify({
-                    canceled: new Date()
+                    status: 'canceled'
                 }),
                 contentType: 'application/json'
             }).done(function(e) {

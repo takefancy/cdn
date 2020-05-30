@@ -51,6 +51,8 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 .checkout-client .right{float:left;padding-left:5px;}
 .checkout-error{width:100%;}
 .checkout-client-name{font-size:1.4rem;}
+.monitor-client-name{font-size:2.8rem;}
+.monitor-font-size{font-size:2.8rem !important;}
 a.nav-operator-name:link,
 a.nav-operator-name:visited,
 a.nav-operator-name:hover,
@@ -64,6 +66,8 @@ ul.appt{list-style-type:none;margin:5px;padding-inline-start:5px;}
 .pt-18{padding-top: 18px;}
 .icon-mute{position: absolute; bottom: 30px; right: 30px;width:60px;height:60px;background-color:rgba(0,0,0,.27);border-radius: 50%;}
 .icon-mute i{font-size: 2rem;margin: 14px;color:#fff;}
+.nav-monitor{left:0 !important;}
+.content-monitor{margin-left:0 !important;}
 /*============ end.checkout ===============*/
 .nav-waiting.active{background-color:#ff4f81!important;}
 .nav-serving.active{background-color:#8e43e7!important;}

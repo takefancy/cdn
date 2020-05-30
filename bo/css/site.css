@@ -54,13 +54,14 @@ h1{color:#39DA8A!important;font-size:3.5rem;font-weight:300;line-height:1.2;text
 a.nav-operator-name:link,
 a.nav-operator-name:visited,
 a.nav-operator-name:hover,
-a.nav-operator-name:active{display:block;margin:0 auto;color:#fff;position:absolute;left:0;width:60%;left:20%;text-align:center;font-size:2.3rem;}
+a.nav-operator-name:active{display:block;margin:0 auto;color:#fff;position:absolute;left:0;width:40%;left:30%;text-align:center;font-size:1.8rem;}
 .nav-checkout-title{font-size:1.2rem!important;}
 .card-title-bold{font-weight:600!important;font-size:2.2rem!important;}
 ul.appt{list-style-type:none;margin:5px;padding-inline-start:5px;}
 .modal-body-large{min-height: 550px;}
 .appt-time{width:90px;text-align: center;padding:15px 0;display: block;}
 .mr-s{margin-right: 0.2rem;}
+.pt-18{padding-top: 18px;}
 /*============ end.checkout ===============*/
 .nav-waiting.active{background-color:#ff4f81!important;}
 .nav-serving.active{background-color:#8e43e7!important;}

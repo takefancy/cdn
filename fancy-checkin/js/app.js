@@ -216,4 +216,18 @@ $(function() {
             correctLevel: QRCode.CorrectLevel.H
         });
     }
+    //refresh every 29 minutes
+    (function() {
+        var _id,
+            setup = function() {
+                clearInterval(_id);
+                _id = setTimeout(function() {
+                    window.location.reload();
+                }, 1740000);
+            };
+        $(document).on('touchstart touchmove touchend touchcancel click', function() {
+            setup();
+        });
+        setup();
+    }());
 });

@@ -58,8 +58,7 @@ $(function() {
             loading: false,
             systemError: false,
             retry: 0,
-            retryLimit: 20,
-            memory: false
+            retryLimit: 20
         },
         computed: {
             formatedPhone: function() {
@@ -140,7 +139,7 @@ $(function() {
                                 that.step = 3;
                             }
                             if (isPublic) {
-                                setCookie(CHECKIN_COOKIE, e.client._id, 365);
+                                setCookie(CHECKIN_COOKIE, that.phone, 365);
                             }
                         } else {
                             that.client = {};
@@ -182,14 +181,11 @@ $(function() {
             back: function() {
                 if (this.step === 3 && this.client._id) {
                     this.step -= 2;
-                    if (this.memory) {
-                        this.phone = '';
-                    }
                 } else {
                     this.step -= 1;
                 }
-                if(this.step === 1){
-                    slides.slickNext();
+                if (this.step === 1) {
+                    slides.slick('slickNext');
                 }
             },
             checkin: function() {
@@ -232,19 +228,23 @@ $(function() {
             this.operator = JSON.parse($('#operator').val());
             this.api = $('#api').val();
             if (isPublic) {
-                var client = getCookie(CHECKIN_COOKIE);
-                if (client) {
+                var phone = getCookie(CHECKIN_COOKIE);
+                if (phone) {
                     $.ajax({
-                        type: 'GET',
-                        url: this.api + '/checkin/client/' + client,
+                        type: 'POST',
+                        url: this.api + '/checkin/phone',
+                        data: JSON.stringify({
+                            phone: phone,
+                            operatorId: this.operator._id
+                        }),
                         contentType: 'application/json',
                         dataType: 'json'
                     }).done(function(e) {
                         if (e.client) {
                             that.client = e.client;
-                            that.phone = e.client.phone;
-                            that.memory = true;
+                            that.phone = phone;
                             if (e.transaction) {
+                                that.transaction = e.transaction;
                                 that.step = 6;
                             } else {
                                 that.step = 3;

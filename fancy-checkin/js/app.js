@@ -250,6 +250,8 @@ $(function() {
                                 that.step = 3;
                             }
                         }
+                    }).fail(function() {
+                        setCookie(CHECKIN_COOKIE, '');
                     });
                 }
             }

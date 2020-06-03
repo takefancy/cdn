@@ -109,7 +109,7 @@ progress::-webkit-progress-value { background-color: #0bcc6c; transition: all 0.
 .no-body { border: 0px !important; }
 
 /*public*/
-.right-bg-public { position: absolute; top: 0; left: 0; z-index: 1; width: 100%; height: 680px; }
+.right-bg-public { margin:0 auto; z-index: 1; width: 100%; height: 680px; }
 .right-bg-public .slick-slide img { height: 680px; width: auto; }
 .checkin-public h2{ font-size: 1.6rem !important; }
 .w80p { width: 80% !important; }

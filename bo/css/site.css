@@ -162,7 +162,7 @@ tr.canceled i{color:#e4002b!important;}
 /*BO*/
 .delete-icon{position:absolute;right:20px;top:33px;}
 .add-icon{float:right;}
-.bo-qr-preview{width:100%;height: auto;}
+.bo-qr-preview{width:100%;max-width:150px;height: auto;}
 .bo-qr-remove{position: absolute;right:20px;bottom: 20px;width:60px;height:60px;border-radius: 50%;cursor:pointer;background-color:rgba(0,0,0,0.27);}
 .bo-qr-remove i{font-size: 2rem;margin: 14px;color:#fff;}
 

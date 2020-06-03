@@ -1,4 +1,7 @@
 $(function() {
+    if ($('#app').length < 1) {
+        return;
+    }
     new Vue({
         el: '#app',
         delimiters: ['${', '}'],
@@ -54,6 +57,10 @@ $(function() {
                 }
             },
             countdown: function() {
+                console.log($('#disableCountdown').val());
+                if ($('#disableCountdown').val()) {
+                    return;
+                }
                 var that = this;
                 this.refreshTime = 10;
                 this.timer = setInterval(function() {
@@ -183,10 +190,9 @@ $(function() {
         }
     });
 });
-
 $(function() {
-    var slides = $('.right-bg');
-    $('.right-bg').slick({
+    var slides = $('.slick');
+    $('.slick').slick({
         dots: false,
         arrows: false,
         slidesToShow: 1,
@@ -200,4 +206,14 @@ $(function() {
 });
 $(function() {
     FastClick.attach(document.body);
+    if ($('#fancy-qrcode').length) {
+        new QRCode(document.getElementById('fancy-qrcode'), {
+            text: $('#fancy-qrcode').attr('data-url'),
+            width: 120,
+            height: 120,
+            colorDark: "#000",
+            colorLight: "#fff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
 });

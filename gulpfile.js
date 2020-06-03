@@ -45,7 +45,7 @@ let clean = shell.task([`rm -rf ${TMP}`]),
 	checkin = (() => {
 		let rm = shell.task([`rm -f ./fancy-checkin/js/bundle*.js`, `rm -f ./fancy-checkin/css/bundle*.css`]),
 			js = (cb) => {
-				let files = ['jquery', 'vue', 'mask', 'slick', 'lazysizes', 'fastclick', 'app'].map((e) => {
+				let files = ['jquery', 'vue', 'mask', 'slick', 'lazysizes', 'fastclick', 'qrcode', 'app'].map((e) => {
 					return `./fancy-checkin/js/${e}.js`;
 				});
 				src(files).pipe(concat('bundled.js')).pipe(rev()).pipe(uglify()).pipe(dest('./fancy-checkin/js/')).on('end', cb);

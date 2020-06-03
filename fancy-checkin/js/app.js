@@ -1,7 +1,41 @@
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+var CHECKIN_COOKIE = 'Jn#6pp&SW*JYyJy<';
 $(function() {
+    var isPublic = $('#public').val();
     if ($('#app').length < 1) {
         return;
     }
+    var slides = $('.slick');
+    $('.slick').slick({
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 15000,
+        cssEase: 'linear'
+    });
     new Vue({
         el: '#app',
         delimiters: ['${', '}'],
@@ -24,7 +58,8 @@ $(function() {
             loading: false,
             systemError: false,
             retry: 0,
-            retryLimit: 20
+            retryLimit: 20,
+            memory: false
         },
         computed: {
             formatedPhone: function() {
@@ -57,8 +92,7 @@ $(function() {
                 }
             },
             countdown: function() {
-                console.log($('#disableCountdown').val());
-                if ($('#disableCountdown').val()) {
+                if (isPublic) {
                     return;
                 }
                 var that = this;
@@ -105,6 +139,9 @@ $(function() {
                             } else {
                                 that.step = 3;
                             }
+                            if (isPublic) {
+                                setCookie(CHECKIN_COOKIE, e.client._id, 365);
+                            }
                         } else {
                             that.client = {};
                             that.step = 2;
@@ -145,8 +182,14 @@ $(function() {
             back: function() {
                 if (this.step === 3 && this.client._id) {
                     this.step -= 2;
+                    if (this.memory) {
+                        this.phone = '';
+                    }
                 } else {
                     this.step -= 1;
+                }
+                if(this.step === 1){
+                    slides.slickNext();
                 }
             },
             checkin: function() {
@@ -185,23 +228,32 @@ $(function() {
             }
         },
         created: function() {
+            var that = this;
             this.operator = JSON.parse($('#operator').val());
             this.api = $('#api').val();
+            if (isPublic) {
+                var client = getCookie(CHECKIN_COOKIE);
+                if (client) {
+                    $.ajax({
+                        type: 'GET',
+                        url: this.api + '/checkin/client/' + client,
+                        contentType: 'application/json',
+                        dataType: 'json'
+                    }).done(function(e) {
+                        if (e.client) {
+                            that.client = e.client;
+                            that.phone = e.client.phone;
+                            that.memory = true;
+                            if (e.transaction) {
+                                that.step = 6;
+                            } else {
+                                that.step = 3;
+                            }
+                        }
+                    });
+                }
+            }
         }
-    });
-});
-$(function() {
-    var slides = $('.slick');
-    $('.slick').slick({
-        dots: false,
-        arrows: false,
-        slidesToShow: 1,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        autoplay: true,
-        autoplaySpeed: 15000,
-        cssEase: 'linear'
     });
 });
 $(function() {

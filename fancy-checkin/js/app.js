@@ -24,18 +24,6 @@ $(function() {
     if ($('#app').length < 1) {
         return;
     }
-    var slides = $('.slick');
-    $('.slick').slick({
-        dots: false,
-        arrows: false,
-        slidesToShow: 1,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        autoplay: true,
-        autoplaySpeed: 15000,
-        cssEase: 'linear'
-    });
     new Vue({
         el: '#app',
         delimiters: ['${', '}'],
@@ -185,7 +173,7 @@ $(function() {
                     this.step -= 1;
                 }
                 if (this.step === 1) {
-                    slides.slick('slickNext');
+                    $('.slick').slick('slickNext');
                 }
             },
             checkin: function() {
@@ -260,6 +248,18 @@ $(function() {
 });
 $(function() {
     FastClick.attach(document.body);
+    $('.slick').slick({
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 15000,
+        cssEase: 'linear'
+    });
+
     if ($('#fancy-qrcode').length) {
         new QRCode(document.getElementById('fancy-qrcode'), {
             text: $('#fancy-qrcode').attr('data-url'),

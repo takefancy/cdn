@@ -45,13 +45,13 @@ let clean = shell.task([`rm -rf ${TMP}`]),
 	checkin = (() => {
 		let rm = shell.task([`rm -f ./fancy-checkin/js/bundle*.js`, `rm -f ./fancy-checkin/css/bundle*.css`]),
 			js = (cb) => {
-				let files = ['jquery', 'vue', 'mask', 'slick', 'lazysizes', 'fastclick', 'qrcode', 'app'].map((e) => {
+				let files = ['jquery', 'vue', 'mask', 'slick', 'lazysizes', 'fastclick', 'qrcode', 'signature', 'sweetalert2', 'app'].map((e) => {
 					return `./fancy-checkin/js/${e}.js`;
 				});
 				src(files).pipe(concat('bundled.js')).pipe(rev()).pipe(uglify()).pipe(dest('./fancy-checkin/js/')).on('end', cb);
 			},
 			css = (cb) => {
-				let files = ['animate', 'et-lineicons', 'themify-icons', 'bootstrap', 'spinkit', 'app', 'slick', 'keyboard', 'style'].map((e) => {
+				let files = ['animate', 'et-lineicons', 'themify-icons', 'bootstrap', 'spinkit', 'app', 'slick', 'sweetalert2', 'keyboard', 'style'].map((e) => {
 					return `./fancy-checkin/css/${e}.css`;
 				});
 				src(files).pipe(concat('bundled.css')).pipe(rev()).pipe(cleanCSS()).pipe(dest('./fancy-checkin/css/')).on('end', cb);

@@ -19,6 +19,7 @@ function getCookie(name) {
     return null;
 }
 var CHECKIN_COOKIE = 'Jn#6pp&SW*JYyJy<';
+var UPLOADED_FILE = '';
 $(function() {
     var isPublic = $('#public').val();
     if ($('#app').length < 1) {
@@ -63,6 +64,23 @@ $(function() {
             },
             clearPhone: function() {
                 this.phone = '';
+            },
+            covid: function() {
+                var signatureRequired = $('#signatureRequired').val(),
+                    optional = signatureRequired === 'optional',
+                    required = signatureRequired === 'required',
+                    askForSignature = optional || required;
+                if (askForSignature && !this.client.signature) {
+                    Swal.fire({
+                        title: false,
+                        html: '<iframe class="covid-iframe" src="/covid?name=' + encodeURIComponent(this.client.name) + '"></iframe>',
+                        customClass: 'swal-wide',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        allowOutsideClick: optional,
+                        showCloseButton: optional
+                    });
+                }
             },
             keypress: function(i) {
                 if (i === -1) {
@@ -125,6 +143,7 @@ $(function() {
                                 that.countdown();
                             } else {
                                 that.step = 3;
+                                that.covid();
                             }
                             if (isPublic) {
                                 setCookie(CHECKIN_COOKIE, that.phone, 365);
@@ -149,6 +168,7 @@ $(function() {
             },
             setName: function() {
                 this.step = 3;
+                this.covid();
             },
             selectStaff: function(i) {
                 this.$set(i, 'selected', !i.selected);
@@ -197,7 +217,8 @@ $(function() {
                         staffs: this.selectedStaffs,
                         services: this.selectedServices,
                         appointment: this.appointment,
-                        operatorId: this.operator._id
+                        operatorId: this.operator._id,
+                        signature: UPLOADED_FILE
                     }),
                     contentType: 'application/json',
                     dataType: 'json'
@@ -259,7 +280,6 @@ $(function() {
         autoplaySpeed: 15000,
         cssEase: 'linear'
     });
-
     if ($('#fancy-qrcode').length) {
         new QRCode(document.getElementById('fancy-qrcode'), {
             text: $('#fancy-qrcode').attr('data-url'),
@@ -284,4 +304,45 @@ $(function() {
         });
         setup();
     }());
+});
+//covid
+$(function() {
+    if ($('#signature').length > 0) {
+        var canvas = document.querySelector('canvas');
+        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext("2d").scale(ratio, ratio);
+        var signaturePad = new SignaturePad(canvas, {
+            minWidth: 0.5,
+            maxWidth: 3,
+            penColor: '#000'
+        });
+        $('#btnClearSignature').click(function() {
+            signaturePad.clear();
+        });
+        $('#btnSubmitCovid').click(function() {
+            $('#covidError').html('');
+            if (signaturePad.isEmpty()) {
+                $('#covidError').html('Please sign into the pad above');
+            }
+            var img = signaturePad.toDataURL();
+            $.ajax({
+                type: 'POST',
+                url: '/covid',
+                data: JSON.stringify({
+                    signature: signaturePad.toDataURL()
+                }),
+                contentType: 'application/json',
+                dataType: 'json'
+            }).done(function(e) {
+                parent.postMessage(e.file, location.origin);
+            });
+        });
+    } else {
+        window.addEventListener('message', function(event) {
+            UPLOADED_FILE = event.data;
+            Swal.close();
+        }, true);
+    }
 });

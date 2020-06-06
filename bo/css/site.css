@@ -296,3 +296,6 @@ ul.pagination li{border:1px solid #ccc;margin:0 5px;}
 .me-review-icon{width:125px;display:block;margin:0 auto;}
 .me-content-wrapper{padding:1.5rem .8rem .2rem .8rem!important;}
 .me-form-btn{margin:25px 0;}
+
+/*bo.covid*/
+.client-signature{max-width: 230px;max-height: 120px;}

@@ -561,4 +561,12 @@ $(function() {
             new Chart($(this)[0].getContext('2d'), config);
         }
     });
+
+    $('.pretty-json').each(function() {
+        var ugly = $(this).val();
+        console.log(ugly);
+        var obj = JSON.parse(ugly);
+        var pretty = JSON.stringify(obj, undefined, 4);
+        $(this).val(pretty);
+    });
 });

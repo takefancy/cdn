@@ -115,11 +115,16 @@ canvas#signature { border: 1px solid #caccd1; width: 100%; height: auto; min-hei
 .icon-danger { font-weight: 600; color: #e4002b;}
 .icon-success { font-weight: 600; color: #34bf49;}
 .no-margin { margin: 0 !important; }
-.covid-html, .covid-html p { font-size: .9rem; color: #543729; }
-.btn-covid-agree { width: 250px; font-weight: 600; }
-#covidError { color: #e4002b !important; font-weight: 600; }
+.covid-html, .covid-html p { font-size: 1rem; color: #543729; }
+.covid-html p { margin:0 0 8px 0 !important; }
+.btn-covid-agree { font-weight: 600; }
+#covidError { font-weight: 600; }
+.danger{color:#e4002b !important;}
 .clear-signature { position: absolute; top: 120px; right: 30px; font-size: 1.5rem; font-weight: 400; color: #ff0000; }
 .btn-submit-container{padding-top:112px;}
+@media (max-width:480px) {
+	.btn-submit-container{padding-top:12px !important;}
+}
 /*public*/
 .right-bg-public { margin: 0 auto; z-index: 1; width: 100%; height: 680px; }
 .right-bg-public .slick-slide img { height: 680px; width: auto; }

@@ -322,9 +322,9 @@ $(function() {
             signaturePad.clear();
         });
         $('#btnSubmitCovid').click(function() {
-            $('#covidError').html('');
             if (signaturePad.isEmpty()) {
-                $('#covidError').html('Please sign into the pad above');
+                $('#covidError').addClass('danger');
+                return;
             }
             var img = signaturePad.toDataURL();
             $.ajax({

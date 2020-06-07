@@ -70,7 +70,7 @@ $(function() {
                     optional = signatureRequired === 'optional',
                     required = signatureRequired === 'required',
                     askForSignature = optional || required;
-                if (askForSignature && !this.client.signature) {
+                if (askForSignature) {
                     Swal.fire({
                         title: false,
                         html: '<iframe class="covid-iframe" src="/covid?name=' + encodeURIComponent(this.client.name) + '"></iframe>',
@@ -257,6 +257,7 @@ $(function() {
                                 that.step = 6;
                             } else {
                                 that.step = 3;
+                                that.covid();
                             }
                         }
                     }).fail(function() {

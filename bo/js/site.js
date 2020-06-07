@@ -79,7 +79,9 @@ $(function() {
         var keyword = $('#txtSearch').val();
         var date = $('#txtDate').html();
         var url = utils.query('keyword', keyword);
-        url = utils.query('date', date, url);
+        if(date){
+            url = utils.query('date', date, url);
+        }
         window.location.assign(url);
     });
 });
@@ -257,9 +259,7 @@ Vue.directive('select', {
 /* Date-Range*/
 $(function() {
     $('.daterange-picker').each(function() {
-        var start = moment().subtract(29, 'days'),
-            end = moment(),
-            format = function(e) {
+        var format = function(e) {
                 return e.format('YYYY/MM/DD');
             };
         var el = $(this);
@@ -272,6 +272,7 @@ $(function() {
         $(el).daterangepicker({
             startDate: start,
             endDate: end,
+            autoUpdateInput: false,
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -281,7 +282,8 @@ $(function() {
                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         }, update);
-        update(start, end);
+
+        // update(start, end);
     });
 
     $('.daterange-hour').each(function() {
